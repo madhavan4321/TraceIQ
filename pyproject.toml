@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "traceiq-core"
+version = "0.1.0"
+description = "Shared data investigation models and engine for TraceIQ"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "duckdb>=1.2,<2",
+    "polars>=1.25,<2",
+    "pydantic>=2.10,<3",
+]
+
+[project.optional-dependencies]
+cli = ["rich>=13.9,<15", "typer>=0.15,<1"]
+api = ["fastapi>=0.115,<1", "python-multipart>=0.0.20,<1"]
+dev = ["pytest>=8.3,<9", "ruff>=0.9,<1"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["packages/traceiq-core/src/traceiq"]
+
+[tool.pytest.ini_options]
+testpaths = ["packages/traceiq-core/tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+src = ["packages/traceiq-core/src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
