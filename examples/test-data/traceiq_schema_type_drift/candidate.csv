@@ -1,0 +1,4 @@
+transaction_id,amount,invoice_date
+9001,10.5,2026-10-01
+9002,25.0,2026-10-02
+9003,not_recorded,2026-10-03
